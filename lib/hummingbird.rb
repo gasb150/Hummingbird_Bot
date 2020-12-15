@@ -13,12 +13,19 @@ class BirdBot
         when '/combo'
           bird.api.send_message(chat_id: info.chat.id, text: "You chose combo catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_combo}, if you want to go back to previws menu press '/back' ")
           bird.listen do |type|
+            name = type.text.gsub("/","")
              case type.text
+            
              when '/portrait'
-              bird.api.send_message(chat_id: type.chat.id, text: "you choose a portrait and wine")
+              bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and a beatifull #{name}")
             when '/cups'
-              bird.api.send_message(chat_id: type.chat.id, text: "you choose wine and 2 cups")
+              bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and 2 brilliants#{name}")
+            when '/dinner'
+              bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and a amaizing #{name}")
+            when '/teddy'
+              bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and a cute #{name}")
             when '/back'
+              bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories")             
               break
              end
 

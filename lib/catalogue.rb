@@ -7,7 +7,7 @@ class Wine
   end
   
   def combo_packs
-    combos  = {wine_atssss: 4000, wine_cups:3000, wine_dinner: 2323, wine_teddy: 1231}
+    combos  = {wine_portrait: 4000, wine_cups:3000, wine_dinner: 2323, wine_teddy: 1231}
   end
   
   def boxes
