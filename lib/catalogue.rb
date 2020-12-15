@@ -1,9 +1,8 @@
-
 class Wine
   attr_accessor :pasas
 
   def single_bottles
-    bottles = {Corozo: p1, Mango: 2000, Lulo: 2000, Guayaba: 2000}
+    bottles = {Corozo: 1000, Mango: 2000, Lulo: 2000, Guayaba: 2000}
   end
   
   def combo_packs
@@ -14,27 +13,37 @@ class Wine
     p @p1
     mayoritario = {Corozo: @p1*(1-0.1)*12, Mango: 2131, Lulo: 145, Guayaba: 234}
   end
+  def show_single()
+    @options =self.single_bottles
+    code = @options.keys.to_s.downcase.gsub(":", "/").gsub("[","").gsub("]","").gsub(" ","").split(",")
+    show_options(@options,code)
+    
+  end
+
+  
 
   def show_combo()
     @options = self.combo_packs
-    pre_code = @options.keys.to_s.gsub(":wine_", "").gsub("[","").gsub("]","").gsub(" ","").split(",")
-    code = pre_code.map { |x| "#{x}"  }
-    n = 0
-    y = []
-    m = []
-    while n < @options.keys.length do
-    y << [@options.keys[n], "will cost:", @options.values[n], "type this code to select ->", " /#{code[n]}"]
-    m << y[n].join(",").gsub(",", " ")
-    n+=1
-    end
-    # x = Array.new
-    # self.combo_packs.each {|y| x << y}
-    # x
-    m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
-    return m.to_s
-  #to_s.gsub("_", " & ").gsub(":","").gsub("=>", " will cost ").gsub("{","").gsub("}","")
-  
+    code = @options.keys.to_s.gsub(":", "/").gsub("wine_", "").gsub("[","").gsub("]","").gsub(" ","").split(",")
+    
+    show_options(@options,code)
   end
+
+
+    def show_options(options,code)
+      @code=code
+      @options=options
+      n = 0
+      y = []
+      m = []
+      while n < @options.keys.length do
+      y << [@options.keys[n], "will cost:", @options.values[n], "type this code to select ->", " #{@code[n]}"]
+      m << y[n].join(",").gsub(",", " ")
+      n+=1
+      end
+      m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
+      return m.to_s
+    end
 end
  
 # p n.keys[1]

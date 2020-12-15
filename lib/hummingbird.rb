@@ -14,9 +14,8 @@ class BirdBot
           bird.api.send_message(chat_id: info.chat.id, text: "You chose combo catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_combo}, if you want to go back to previws menu press '/back' ")
           bird.listen do |type|
             name = type.text.gsub("/","")
-             case type.text
-            
-             when '/portrait'
+            case type.text
+            when '/portrait'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and a beatifull #{name}")
             when '/cups'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and 2 brilliants#{name}")
@@ -27,10 +26,10 @@ class BirdBot
             when '/back'
               bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories")             
               break
-             end
-
             end
-      
+          end
+        when '/single'
+          bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press '/back' ")
         when '/stop'
           bird.api.send_message(chat_id: info.chat.id, text: "Good bye, #{info.from.first_name} #{info.from.last_name}")
         end
