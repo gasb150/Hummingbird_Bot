@@ -1,8 +1,17 @@
 require 'telegram/bot'
 require_relative 'catalogue'
 
+require 'ripl'
+module Ripl::SlicedInspect
+  def format_result(result)
+    result_prompt + result.inspect.slice(MAX_LEN)
+  end
+end
+Ripl::Shell.send :include, Ripl::SlicedInspect
+
 class BirdBot
-  @@bill=0
+  @@n = "if you want to buy single bottles of wine you can type /single, if you want a box with 12 bottles use /box if you want some combos use /combo and if you want a complete bill description use /car"
+  @@bill = Array.new
   def initialize
     @token = '1406170037:AAEDdK8mS6tYIe3m8jkSUaJenV5rXMeSA2I'
     @option = Wine.new
@@ -10,7 +19,6 @@ class BirdBot
       bird.listen do |info|
         case info.text
         when '/start'
-          @@n = "if you want to buy single bottles of wine you can type /single, if you want a box with 12 bottles use /box if you want some combos use /combo and if you want a complete bill description use /bill"
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{info.from.first_name} #{info.from.last_name} this bot will help you to know about our products, #{@@n} ")
         when '/box'
           @type = 1
@@ -20,16 +28,17 @@ class BirdBot
             case type.text
             when '/corozo'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of strongs #{name}s")
-              @@bill += Wine.bill?(@type, name)
+              @@bill << Wine.car?(@type, name)
+              bird.api.send_message(chat_id: type.chat.id, text: " #{@@bill}s")
             when '/mango'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of sweets #{name}s")
-              @@bill += Wine.bill?(@type, name)
+              @@bill << Wine.car?(@type, name)
             when '/lulo'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of and not much acids #{name}s")
-              @@bill += Wine.bill?(@type, name)
+              @@bill << Wine.car?(@type, name)
             when '/guayaba'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of exotics #{name}s")
-              @@bill += Wine.bill?(@type, name)
+              @@bill << Wine.car?(@type, name)
             when '/back'
               bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories ")
               bird.api.send_message(chat_id: type.chat.id, text: "#{@@n}")          
@@ -42,6 +51,7 @@ class BirdBot
 
         when '/combo'
           @type = 2
+          
           bird.api.send_message(chat_id: info.chat.id, text: "You chose combo catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_combo}, if you want to go back to previws menu press '/back' ")
           bird.listen do |type|
             name = type.text.gsub("/","")
@@ -60,7 +70,8 @@ class BirdBot
               @@bill += Wine.bill?(@type, name)
             when '/back'
               bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories ")
-              bird.api.send_message(chat_id: type.chat.id, text: "#{@@n}")              
+              bird.api.send_message(chat_id: type.chat.id, text: @@n.to_s)
+                
               break
             end
           end
@@ -69,8 +80,9 @@ class BirdBot
 
 
         when '/single'
+          
           @type = 3
-          bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press '/back' ")
+          bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press '/back' ") 
           bird.listen do |type|
             name = type.text.gsub("/","")
             case type.text
@@ -92,9 +104,11 @@ class BirdBot
               break
             end
           end
-        when '/stop'
-          x = Wine.show_bill(@@bill)
-          bird.api.send_message(chat_id: info.chat.id, text: "Good bye, #{info.from.first_name} #{info.from.last_name}, your bill show you will pay $#{x}")
+        when '/car'
+          x = Wine.car(@@bill)
+          bird.api.send_message(chat_id: info.chat.id, text: "#{x}")
+         
+        #   bird.api.send_message(chat_id: info.chat.id, text: "Good bye, #{info.from.first_name} #{info.from.last_name}, your bill show you will pay $#{x}")
         end
       end
     end

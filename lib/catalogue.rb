@@ -56,12 +56,12 @@ class Wine
     @option = option
     case @option
     when 1
-      value = boxes[@code]
+      value = boxes[@code].to_i
     when 2
-      @code = (combo_packs.keys.select{|k| p k.to_s.include? (@code.to_s.downcase) }).join().to_sym
-      value = combo_packs[@code]
+      @code = (combo_packs.keys.select{|k| k.to_s.include? (@code.to_s.downcase) }).join().to_sym
+      value = combo_packs[@code].to_i
     when 3
-      value = single_bottles[@code]
+      value = single_bottles[@code].to_i
     end
   end
 
@@ -69,18 +69,52 @@ class Wine
     @bill
   end
 
-  def self.car(option, code)
+  def self.car?(option, code)
     @code = code.capitalize.to_sym
     @option = option
     case @option
     when 1
       value = boxes[@code]
     when 2
-      @code = (combo_packs.keys.select{|k| p k.to_s.include? (@code.to_s.downcase) }).join().to_sym
+      @code = (combo_packs.keys.select{|k| k.to_s.include? (@code.to_s.downcase) }).join().to_sym
       value = combo_packs[@code]
     when 3
       value = single_bottles[@code]
     end
     n = [@code, value]
   end
+
+  def self.car(shopping)
+
+    @shopping = shopping
+    tye_ = @shopping.uniq
+    n=0
+   
+    while n <tye_.length
+    number = @shopping.count (tye_[n])
+    total = tye_[n][1]*number
+    arr << [number, tye_[n], total]
+    arr
+    n+=1
+    end  
+     arr
+  end
+  
 end
+
+require 'ripl'
+module Ripl::SlicedInspect
+  def format_result(result)
+    result_prompt + result.inspect.slice(2)
+  end
+end
+Ripl::Shell.send :include, Ripl::SlicedInspect
+
+ x=[]
+  x<< Wine.car?(2, "cups")
+  x<< Wine.car?(1, "mango")
+  x<<Wine.car?(2,"cups")
+  x<< Wine.car?(1, "corozo")
+  x<<Wine.car?(2,"cups")
+
+ p Wine.car(x)
