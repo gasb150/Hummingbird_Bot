@@ -3,11 +3,11 @@ class Wine
 
     @@prices = [2000, 2000, 3000, 2000]
 
-  def single_bottles
+  def self.single_bottles
     bottles = {Corozo: @@prices[0], Mango: @@prices[1], Lulo: @@prices[2], Guayaba: @@prices[3]}
   end
   
-  def combo_packs
+  def self.combo_packs
     combos  = {wine_portrait: 4000, wine_cups:3000, wine_dinner: 2323, wine_teddy: 1231}
   end
   
@@ -57,14 +57,16 @@ class Wine
     case @option
     when 1
       boxes[@code]
-    end
-  when 2
-    boxes[@code]
+    when 2
+      combo_packs[@code]
+    when 3
+      single_bottles[@code]
   end
   end
 
-  def show_bill
-    
+  def self.show_bill(bill)
+    @bill = bill
+    @bill
   end
 end
  
