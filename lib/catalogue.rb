@@ -11,7 +11,7 @@ class Wine
     combos  = {wine_portrait: 4000, wine_cups:3000, wine_dinner: 2323, wine_teddy: 1231}
   end
   
-  def boxes
+  def self.boxes
     mayoritario = {Corozo: @@prices[0]*(1-0.1)*12, Mango: @@prices[1]*(1-0.1)*12, Lulo: @@prices[2]*(1-0.1)*12, Guayaba: @@prices[3]*(1-0.1)*12}
   end
 
@@ -21,7 +21,7 @@ class Wine
   end
 
   def show_box()
-    @options =self.boxes
+    @options = Wine.boxes
     show_options(@options)
   end 
 
@@ -50,4 +50,21 @@ class Wine
     m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
     return m.to_s
   end
+  
+  def self.bill?(option, code)
+    @code = code.capitalize.to_sym
+    @option = option
+    case @option
+    when 1
+      boxes[@code]
+    end
+  when 2
+    boxes[@code]
+  end
+  end
+
+  def show_bill
+    
+  end
 end
+ 

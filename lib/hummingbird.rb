@@ -11,25 +11,34 @@ class BirdBot
         when '/start'
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{info.from.first_name} #{info.from.last_name} this bot will help you to know about our products")
         when '/box'
-          bird.api.send_message(chat_id: info.chat.id, text: "You chose boxes catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_box}, if you want to go back to previws menu press '/back' ")
+          @type = 1
+          bird.api.send_message(chat_id: info.chat.id, text: "You chose boxes catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_box}, if you want to go back to previws menu press '/back', if you want to go to the car then press '/car'")
           bird.listen do |type|
             name = type.text.gsub("/","")
             case type.text
             when '/corozo'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of strongs #{name}s")
+              Wine.bill?(@type, name)
             when '/mango'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of sweets #{name}s")
+              Wine.bill?(@type, name)
             when '/lulo'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of and not much acids #{name}s")
+              Wine.bill?(@type, name)
             when '/guayaba'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of exotics #{name}s")
+              Wine.bill?(@type, name)
             when '/back'
               bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories")             
               break
+            when '/car'
+              
             end
+          
           end
 
         when '/combo'
+          @type = 2
           bird.api.send_message(chat_id: info.chat.id, text: "You chose combo catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_combo}, if you want to go back to previws menu press '/back' ")
           bird.listen do |type|
             name = type.text.gsub("/","")
@@ -52,6 +61,7 @@ class BirdBot
 
 
         when '/single'
+          @type = 1
           bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press '/back' ")
           bird.listen do |type|
             name = type.text.gsub("/","")
