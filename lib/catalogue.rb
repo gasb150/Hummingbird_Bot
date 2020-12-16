@@ -8,7 +8,7 @@ class Wine
   end
   
   def self.combo_packs
-    combos  = {wine_portrait: 4000, wine_cups:3000, wine_dinner: 2323, wine_teddy: 1231}
+    combos  = {wine_portrait: 4000, wine_cups: 3000, wine_dinner: 2323, wine_teddy: 1231}
   end
   
   def self.boxes
@@ -16,7 +16,7 @@ class Wine
   end
 
   def show_single()
-    @options =self.single_bottles
+    @options =Wine.single_bottles
     show_options(@options)
   end
 
@@ -26,7 +26,7 @@ class Wine
   end 
 
   def show_combo()
-    @options = self.combo_packs
+    @options = Wine.combo_packs
     code = @options.keys.to_s.gsub(":", "/").gsub("wine_", "").gsub("[","").gsub("]","").gsub(" ","").split(",")
     show_options(@options,code)
   end
@@ -56,17 +56,31 @@ class Wine
     @option = option
     case @option
     when 1
-      boxes[@code]
+      value = boxes[@code]
     when 2
-      combo_packs[@code]
+      @code = (combo_packs.keys.select{|k| p k.to_s.include? (@code.to_s.downcase) }).join().to_sym
+      value = combo_packs[@code]
     when 3
-      single_bottles[@code]
-  end
+      value = single_bottles[@code]
+    end
   end
 
   def self.show_bill(bill)
-    @bill = bill
     @bill
   end
+
+  def self.car(option, code)
+    @code = code.capitalize.to_sym
+    @option = option
+    case @option
+    when 1
+      value = boxes[@code]
+    when 2
+      @code = (combo_packs.keys.select{|k| p k.to_s.include? (@code.to_s.downcase) }).join().to_sym
+      value = combo_packs[@code]
+    when 3
+      value = single_bottles[@code]
+    end
+    n = [@code, value]
+  end
 end
- 
