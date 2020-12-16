@@ -66,22 +66,34 @@ class Wine
   end
 
   def self.show_bill(bill)
+    @total=0
+    @bill=bill
     @bill
+    n=0
+    while n<bill.length
+    @total+= bill[n][1][3]
+    n+=1
+    end
+    @total
   end
 
   def self.car?(option, code)
     @code = code.capitalize.to_sym
     @option = option
+    @op=""
     case @option
     when 1
       value = boxes[@code]
+      @op = " box of "
     when 2
       @code = (combo_packs.keys.select{|k| k.to_s.include? (@code.to_s.downcase) }).join().to_sym
       value = combo_packs[@code]
+      @op = " combo with "
     when 3
       value = single_bottles[@code]
+      @op =" single bottle of "
     end
-    n = [@code, value]
+    n = [@op, @code," by $", value, " each one and, you have a sub-total of $ "]
   end
 
   def self.car(shopping)
@@ -89,10 +101,10 @@ class Wine
     @shopping = shopping
     tye_ = @shopping.uniq
     n=0
-   
+    arr=[]
     while n <tye_.length
-    number = @shopping.count (tye_[n])
-    total = tye_[n][1]*number
+    number = @shopping.count (p tye_[n])
+    total = tye_[n][3]*number
     arr << [number, tye_[n], total]
     arr
     n+=1
@@ -102,19 +114,15 @@ class Wine
   
 end
 
-require 'ripl'
-module Ripl::SlicedInspect
-  def format_result(result)
-    result_prompt + result.inspect.slice(2)
-  end
-end
-Ripl::Shell.send :include, Ripl::SlicedInspect
 
- x=[]
-  x<< Wine.car?(2, "cups")
-  x<< Wine.car?(1, "mango")
-  x<<Wine.car?(2,"cups")
-  x<< Wine.car?(1, "corozo")
-  x<<Wine.car?(2,"cups")
 
- p Wine.car(x)
+   #x=[]
+    #x<< Wine.car?(2, "cups")
+    #x<< Wine.car?(1, "mango")
+   # x<<Wine.car?(2,"cups")
+  #  x<< Wine.car?(3, "mango")
+ #   x<< Wine.car?(1, "corozo")
+# x<<Wine.car?(2,"cups")
+
+#  p n = Wine.car(x)
+# #  p Wine.show_bill(n)
