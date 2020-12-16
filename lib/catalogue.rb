@@ -115,7 +115,7 @@ class Wine
 end
 
 
-
+p Wine.show_options()
    #x=[]
     #x<< Wine.car?(2, "cups")
     #x<< Wine.car?(1, "mango")
