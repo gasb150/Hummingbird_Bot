@@ -47,7 +47,7 @@ class Wine
     m << y[n].join(",").gsub(",", " ")
     n+=1
     end
-    m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
+    p m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
     return m.to_s
   end
   
@@ -115,7 +115,7 @@ class Wine
 end
 
 
-p Wine.show_options()
+#p Wine.show_options()
    #x=[]
     #x<< Wine.car?(2, "cups")
     #x<< Wine.car?(1, "mango")

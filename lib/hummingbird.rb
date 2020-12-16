@@ -82,7 +82,7 @@ class BirdBot
         when '/single'
           
           @type = 3
-          bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press '/back' ") 
+          bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press /back ") 
           bird.listen do |type|
             name = type.text.gsub("/","")
             case type.text
