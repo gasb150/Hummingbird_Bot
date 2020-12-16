@@ -1,8 +1,10 @@
 class Wine
   attr_accessor :pasas
 
+    @@prices = [2000, 2000, 3000, 2000]
+
   def single_bottles
-    bottles = {Corozo: 1000, Mango: 2000, Lulo: 2000, Guayaba: 2000}
+    bottles = {Corozo: @@prices[0], Mango: @@prices[1], Lulo: @@prices[2], Guayaba: @@prices[3]}
   end
   
   def combo_packs
@@ -10,46 +12,42 @@ class Wine
   end
   
   def boxes
-    p @p1
-    mayoritario = {Corozo: @p1*(1-0.1)*12, Mango: 2131, Lulo: 145, Guayaba: 234}
-  end
-  def show_single()
-    @options =self.single_bottles
-    code = @options.keys.to_s.downcase.gsub(":", "/").gsub("[","").gsub("]","").gsub(" ","").split(",")
-    show_options(@options,code)
-    
+    mayoritario = {Corozo: @@prices[0]*(1-0.1)*12, Mango: @@prices[1]*(1-0.1)*12, Lulo: @@prices[2]*(1-0.1)*12, Guayaba: @@prices[3]*(1-0.1)*12}
   end
 
-  
+  def show_single()
+    @options =self.single_bottles
+    show_options(@options)
+  end
+
+  def show_box()
+    @options =self.boxes
+    show_options(@options)
+  end 
 
   def show_combo()
     @options = self.combo_packs
     code = @options.keys.to_s.gsub(":", "/").gsub("wine_", "").gsub("[","").gsub("]","").gsub(" ","").split(",")
-    
     show_options(@options,code)
   end
-
-
-    def show_options(options,code)
+  
+  def show_options(options,code=nil)
+    @code
+    if code.nil?
+      @code = @options.keys.to_s.downcase.gsub(":", "/").gsub("[","").gsub("]","").gsub(" ","").split(",")
+    else
       @code=code
-      @options=options
-      n = 0
-      y = []
-      m = []
-      while n < @options.keys.length do
-      y << [@options.keys[n], "will cost:", @options.values[n], "type this code to select ->", " #{@code[n]}"]
-      m << y[n].join(",").gsub(",", " ")
-      n+=1
-      end
-      m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
-      return m.to_s
     end
+    @options=options
+    n = 0
+    y = []
+    m = []
+    while n < @options.keys.length do
+    y << [@options.keys[n], "will cost:", @options.values[n], "type this code to select ->", " #{@code[n]}"]
+    m << y[n].join(",").gsub(",", " ")
+    n+=1
+    end
+    m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
+    return m.to_s
+  end
 end
- 
-# p n.keys[1]
-# p  n.values
-
-#  person = Wine.new
-#  person.values = 2000
-#  p person.values # => "Dennis"
-
