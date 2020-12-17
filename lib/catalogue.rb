@@ -112,8 +112,7 @@ class Wine
     arr << [number, tye_[n], total]
     arr
     n+=1
-    end  
-     arr
-  end
-  
+    end 
+    arr
+  end  
 end
