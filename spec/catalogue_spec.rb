@@ -14,24 +14,7 @@ describe Wine do
     [' combo with ', :wine_cups, ' by $', 3_000, ' each one and, you have a sub-total of $ ']
   ]
   let(:car_imput) { imput }
-  context 'show_options' do
-    it 'show the box options' do
-      to_expect = 'Corozo will cost: 21600.0 type this code to select ->  /corozo                                   Mango will cost: 21600.0 type this code to select ->  /mango                                   Lulo will cost: 32400.0 type this code to select ->  /lulo                                   Guayaba will cost: 21600.0 type this code to select ->  /guayaba'
-      expect(n.show_options(Wine.boxes)).to eql(to_expect)
-    end
-    it 'show the combo options with the right number of arguments' do
-      to_expect = 'wine and portrait will cost: 4000 type this code to select ->  portrait                                   wine and cups will cost: 3000 type this code to select ->  cups                                   wine and dinner will cost: 2323 type this code to select ->  dinner                                   wine and teddy will cost: 1231 type this code to select ->  teddy'
-      expect(n.show_options(Wine.combo_packs, code1)).to eql(to_expect)
-    end
-    it 'show the combo options avoiding the second argument' do
-      to_expect = 'wine and portrait will cost: 4000 type this code to select ->  /wine and portrait                                   wine and cups will cost: 3000 type this code to select ->  /wine and cups                                   wine and dinner will cost: 2323 type this code to select ->  /wine and dinner                                   wine and teddy will cost: 1231 type this code to select ->  /wine and teddy'
-      expect(n.show_options(Wine.combo_packs)).to eql(to_expect)
-    end
-    it 'show the single options' do
-      to_expect = 'Corozo will cost: 2000 type this code to select ->  /corozo                                   Mango will cost: 2000 type this code to select ->  /mango                                   Lulo will cost: 3000 type this code to select ->  /lulo                                   Guayaba will cost: 2000 type this code to select ->  /guayaba'
-      expect(n.show_options(Wine.single_bottles)).to eql(to_expect)
-    end
-  end
+
   context 'bill?' do
     it 'show the value of one box' do
       expect(Wine.bill?(1, 'corozo')).to eql(21_600)
@@ -67,6 +50,24 @@ describe Wine do
       to_expect =  [[3, [' combo with ', :wine_cups, ' by $', 3000, ' each one and, you have a sub-total of $ '], 9000, '//'], [1, [' box of ', :Mango, ' by $', 21600.0, ' each one and, you have a sub-total of $ '], 21600.0, '//'], [1, [' single bottle of ', :Mango, ' by $', 2000, ' each one and, you have a sub-total of $ '], 2000, '//'], [1, [' box of ', :Corozo, ' by $', 2600.0, ' each one and, you have a sub-total of $ '], 2600.0, '//']]
 
       expect(Wine.car(car_imput)).to eql(to_expect)
+    end
+  end
+  context 'show_single' do
+    it 'returns an string with the options of single option' do
+    to_expect = "Corozo will cost: 2000 type this code to select ->  /corozo                                   Mango will cost: 2000 type this code to select ->  /mango                                   Lulo will cost: 3000 type this code to select ->  /lulo                                   Guayaba will cost: 2000 type this code to select ->  /guayaba"
+    expect(n.show_single).to eql(to_expect)
+    end
+  end
+  context 'show_box' do
+    it 'returns an string with the options of single option' do
+      to_expect = 'Corozo will cost: 21600.0 type this code to select ->  /corozo                                   Mango will cost: 21600.0 type this code to select ->  /mango                                   Lulo will cost: 32400.0 type this code to select ->  /lulo                                   Guayaba will cost: 21600.0 type this code to select ->  /guayaba'
+      expect(n.show_box).to eql(to_expect)
+    end
+  end
+    context 'show_combo' do
+    it 'returns an string with the options avoiding the second argument' do
+      to_expect = 'wine and portrait will cost: 4000 type this code to select ->  /portrait                                   wine and cups will cost: 3000 type this code to select ->  /cups                                   wine and dinner will cost: 2323 type this code to select ->  /dinner                                   wine and teddy will cost: 1231 type this code to select ->  /teddy'
+      expect(n.show_combo).to eql(to_expect)
     end
   end
 end
