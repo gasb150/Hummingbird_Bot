@@ -75,7 +75,7 @@ class Wine
     @bill
     n=0
     while n<bill.length
-    @total+= bill[n][1][3]
+    @total+= bill[n][2]
     n+=1
     end
     @total
@@ -107,7 +107,7 @@ class Wine
     n=0
     arr=[]
     while n <tye_.length
-    number = @shopping.count (p tye_[n])
+    number = @shopping.count ( tye_[n])
     total = tye_[n][3]*number
     arr << [number, tye_[n], total]
     arr
@@ -118,16 +118,17 @@ class Wine
   
 end
 
-#n = Wine.new
+n = Wine.new
 #code = %w[portrait cups dinner teddy]
 #p Wine.bill?(1,"guayaba")
-   #x=[]
-    #x<< Wine.car?(2, "cups")
-    #x<< Wine.car?(1, "mango")
-   # x<<Wine.car?(2,"cups")
-  #  x<< Wine.car?(3, "mango")
- #   x<< Wine.car?(1, "corozo")
-# x<<Wine.car?(2,"cups")
-
-#  p n = Wine.car(x)
-# #  p Wine.show_bill(n)
+   x=[]
+   x<< Wine.car?(2, "cups")
+   x<< Wine.car?(1, "mango")
+    x<<Wine.car?(2,"cups")
+   x<< Wine.car?(3, "mango")
+   x<< Wine.car?(1, "corozo")
+  x<<Wine.car?(2,"cups")
+#x = [[2, [:Corozo, 2000], [3, :Lulo, 2000], [4, :Guayaba, 2000]]
+#p Wine.show_bill(x)
+ p n = Wine.car(x)
+   Wine.show_bill(n)
