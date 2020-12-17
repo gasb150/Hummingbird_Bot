@@ -1,3 +1,3 @@
-require_relative "../lib/hummingbird"
+require_relative '../lib/hummingbird'
 
 BirdBot.new

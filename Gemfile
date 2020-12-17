@@ -1,4 +1,5 @@
 source "https://rubygems.org"
 
-gem 'telegram-bot-ruby'
 gem 'rubocop', require: false
+gem 'telegram-bot-ruby'
+
