@@ -117,19 +117,3 @@ class Wine
   end
   
 end
-
-n = Wine.new
-#code = %w[portrait cups dinner teddy]
-#p Wine.bill?(1,"guayaba")
-   x=[]
-   x<< Wine.car?(2, "cups")
-   x<< Wine.car?(1, "mango")
-    x<<Wine.car?(2,"cups")
-   x<< Wine.car?(3, "mango")
-   x<< Wine.car?(1, "corozo")
-  x<<Wine.car?(2,"cups")
-#x = [[2, [:Corozo, 2000], [3, :Lulo, 2000], [4, :Guayaba, 2000]]
-#p Wine.show_bill(x)
-#p x
- p n = Wine.car(x)
-  # Wine.show_bill(n)

@@ -110,7 +110,6 @@ class BirdBot
           end
         when '/stop'
           bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{info.from.firstname} #{info.from.lastname}")
-
         end
       end
     end

@@ -1,7 +1,6 @@
  require_relative '../lib/catalogue'
  n = Wine.new
  describe Wine do
-  #let(:code) { %w[ /combo /single /box /mango /corozo /lulo /guyaba /portrait /cups /dinner /teddy /back /car /stop ]}
   let(:code1) {%w[portrait cups dinner teddy]}
   let(:code2) {nil}
   let(:bill) {[[1, [], 9000],[1, [], 21600],[1, [], 2000],[1, [], 21600]]}
