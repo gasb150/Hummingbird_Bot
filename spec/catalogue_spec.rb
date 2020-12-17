@@ -4,7 +4,8 @@
   #let(:code) { %w[ /combo /single /box /mango /corozo /lulo /guyaba /portrait /cups /dinner /teddy /back /car /stop ]}
   let(:code1) {%w[portrait cups dinner teddy]}
   let(:code2) {nil}
-  let(:bill) {[[1, [], 9000],[1, [], 21600],[1, [], 2000],[1, [], 21600]]}
+  let(:bill1) {[[1, [], 9000],[1, [], 21600],[1, [], 2000],[1, [], 21600]]}
+  let(:bill2) {[[1, [], nil],[1, [], 21600],[1, [], 2000],[1, [], 21600]]}
   context 'show_options' do
     it 'show the box options' do
     to_expect = "Corozo will cost: 21600.0 type this code to select ->  /corozo\n Mango will cost: 21600.0 type this code to select ->  /mango\n Lulo will cost: 32400.0 type this code to select ->  /lulo\n Guayaba will cost: 21600.0 type this code to select ->  /guayaba"
@@ -50,8 +51,11 @@
   end
   context 'show_bill' do
     it 'return the value of a bill' do 
-       expect(Wine.show_bill(bill).to_i).to eql(54200)
+       expect(Wine.show_bill(bill1).to_i).to eql(54200)
     end
+    it 'return the value of a bill' do 
+      expect(Wine.show_bill(bill2).to_i).to eql(54200)
+   end
   end
 end
  
