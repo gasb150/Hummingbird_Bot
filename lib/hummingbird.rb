@@ -1,9 +1,10 @@
+# rubocop: disable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/PerceivedComplexity, Metrics/MethodLength
 require 'telegram/bot'
 require_relative 'catalogue'
 
 class BirdBot
-  @@n = "If you want to buy a single wine bottle, you can type /single; if you want a box with 12 bottles /box; if you wanted some combos type /combo, and if you want a complete bill description type /car if you want to finish this chat, you can type /stop"
-  @@bill = Array.new
+  @@n = 'If you want to buy a single wine bottle, you can type /single; if you want a box with 12 bottles /box; if you wanted some combos type /combo, and if you want a complete bill description type /car if you want to finish this chat, you can type /stop'
+  @@bill = []
   def initialize
     @token = '1406170037:AAEDdK8mS6tYIe3m8jkSUaJenV5rXMeSA2I'
     @option = Wine.new
@@ -16,7 +17,7 @@ class BirdBot
           @type = 1
           bird.api.send_message(chat_id: info.chat.id, text: "You chose boxes catalog, here exist these options, you can select one option using code in the right \n #{@option.show_box}, if you want to go back to the previous menu type '/back'; if you wanted to go to the car then press '/car'")
           bird.listen do |type|
-            name = type.text.gsub("/","")
+            name = type.text.gsub('/', '')
             case type.text
             when '/corozo'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of strongs #{name}s")
@@ -32,21 +33,17 @@ class BirdBot
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of exotics #{name}s")
               @@bill << Wine.car?(@type, name)
             when '/back'
-              bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories ")
-              bird.api.send_message(chat_id: type.chat.id, text: "#{@@n}")          
-              
+              bird.api.send_message(chat_id: type.chat.id, text: 'now you can move to previues directories ')
+              bird.api.send_message(chat_id: type.chat.id, text: @@n)
               break
-              
             end
-          
           end
 
         when '/combo'
           @type = 2
-          
           bird.api.send_message(chat_id: info.chat.id, text: "You chose combo catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_combo}, if you want to go back to previws menu press '/back' ")
           bird.listen do |type|
-            name = type.text.gsub("/","")
+            name = type.text.gsub('/', '')
             case type.text
             when '/portrait'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and a beatifull #{name}")
@@ -61,22 +58,18 @@ class BirdBot
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle and a cute #{name} bear")
               @@bill << Wine.car?(@type, name)
             when '/back'
-              bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories ")
-              bird.api.send_message(chat_id: type.chat.id, text: @@n.to_s)
-                
+              bird.api.send_message(chat_id: type.chat.id, text: 'now you can move to previues directories ')
+              bird.api.send_message(chat_id: type.chat.id, text: @@n)
               break
             end
           end
 
-
-
-
         when '/single'
-          
+
           @type = 3
-          bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press /back ") 
+          bird.api.send_message(chat_id: info.chat.id, text: "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press /back ")
           bird.listen do |type|
-            name = type.text.gsub("/","")
+            name = type.text.gsub('/', '')
             case type.text
             when '/corozo'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle of the strongs #{name}s")
@@ -91,8 +84,8 @@ class BirdBot
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine bottle with the exotics #{name}s")
               @@bill << Wine.car?(@type, name)
             when '/back'
-              bird.api.send_message(chat_id: type.chat.id, text: "now you can move to previues directories ")
-              bird.api.send_message(chat_id: type.chat.id, text: "#{@@n}")            
+              bird.api.send_message(chat_id: type.chat.id, text: 'now you can move to previues directories ')
+              bird.api.send_message(chat_id: type.chat.id, text: @@n)
               break
             end
           end
@@ -103,8 +96,8 @@ class BirdBot
           if @itmes == []
             bird.api.send_message(chat_id: info.chat.id, text: "We sorry but you don't bogught nothing")
           else
-            @items = @items.join().to_s.gsub("[","").gsub("]", "").gsub('"',"").gsub(":","")
-           
+            @items = @items.join.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '')
+
             bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought #{@items}")
             bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
           end
@@ -115,3 +108,4 @@ class BirdBot
     end
   end
 end
+# rubocop: enable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/PerceivedComplexity, Metrics/MethodLength
