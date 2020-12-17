@@ -13,7 +13,7 @@ you can choose different flavors for  single bottles, boxes with 12 bottles of w
 
 > <a href=http://t.me/JuanDlaCruzbot>Group link</a>
 
-## Video Description
+## :video_camera: Video Description
 
 > Here you can see the video description: <a href="https://www.loom.com/share/69e17f7e05de46618bff9ec5cd23571a">Video</a>
 
@@ -105,11 +105,11 @@ Now you know how you will spend; you can keep going, have to choose an option
 - Twitter: [@7aves](https://twitter.com/7aves)
 - LinkedIn: [Gutavo Sanmartin](https://www.linkedin.com/in/gustavo-sanmartin-b3b68261/)
 
-## Acknowledgments
+## :clap: Acknowledgments
 
 - [Microverse](https://www.microverse.org/)
 - [The Odin Project](https://www.theodinproject.com)
-- [Telegram] (https://web.telegram.org/)
+- [Telegram](https://web.telegram.org/)
 
 ## Show your support
 
