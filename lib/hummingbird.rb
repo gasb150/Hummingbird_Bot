@@ -108,4 +108,4 @@ class BirdBot
     end
   end
 end
-# rubocop: disable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/MethodLength
+# rubocop: enable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/MethodLength
