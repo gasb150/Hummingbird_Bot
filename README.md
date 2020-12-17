@@ -49,7 +49,7 @@ bundle exec ruby /bin/main.rb
 - now open your telegram and search to @JuanDlaCruzbot or use this <a href=http://t.me/JuanDlaCruzbot>Direct link</a>
 - With this bot: 
 - you can move within options, using the assigned typings. 
-![screenshot](./src/imgs/ScreenshotStart.png)
+![screenshot](../src/imgs/ScreenshotStart.png)
 - if you choose single bottles 
 
 ```
