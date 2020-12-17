@@ -115,24 +115,3 @@ class BirdBot
     end
   end
 end
-
-
-
-         #     ---- botones -----
-      
-      #  when Telegram::Bot::Types::CallbackQuery
-      #   # Here you can handle your callbacks from inline buttons
-      #   if info.data == 'touch'
-      #     bird.api.send_message(chat_id: info.from.id, text: "Don't touch me!")
-      #   end
-      #  when Telegram::Bot::Types::Message
-      #   kb = [
-      #     Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Go to Google', url: 'https://google.com'),
-      #     Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Touch me', callback_data: 'touch'),
-      #     Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Switch to inline', switch_inline_query: 'some as')
-      #   ]
-      #   markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-      #   bird.api.send_message(chat_id: info.chat.id, text: 'Make a choice', reply_markup: markup)
-      # end
-         
-  
