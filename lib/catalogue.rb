@@ -49,7 +49,7 @@ class Wine
       m << y[n].join(',').gsub(',', ' ')
       n += 1
     end
-    m = m.to_s.gsub(',', '\n').gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
+    m = m.to_s.gsub(',', '                                  ').gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
     m.to_s
   end
 
@@ -94,7 +94,7 @@ class Wine
       value = single_bottles[@code]
       @op = ' single bottle of '
     end
-    [@op, @code, ' by $', value, ' each one and, you have a sub-total of $ ']
+    [@op, @code, ' by $', value, ' each one and, you have a sub-total of $']
   end
 
   def self.car(shopping)
@@ -105,7 +105,7 @@ class Wine
     while n < tye_.length
       number = @shopping.count(tye_[n])
       total = tye_[n][3] * number
-      arr << [number, tye_[n], total]
+      arr << [number, tye_[n], total, '//']
       n += 1
     end
     arr

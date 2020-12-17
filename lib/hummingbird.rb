@@ -15,14 +15,13 @@ class BirdBot
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{info.from.first_name} #{info.from.last_name} this bot will help you to know about our products, #{@@n} ")
         when '/box'
           @type = 1
-          bird.api.send_message(chat_id: info.chat.id, text: "You chose boxes catalog, here exist these options, you can select one option using code in the right \n #{@option.show_box}, if you want to go back to the previous menu type '/back'; if you wanted to go to the car then press '/car'")
+          bird.api.send_message(chat_id: info.chat.id, text: "You chose boxes catalog, here exist these options, you can select one option using code in the right \n #{@option.show_box}, if you want to go back to the previous menu type '/back'")
           bird.listen do |type|
             name = type.text.gsub('/', '')
             case type.text
             when '/corozo'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of strongs #{name}s")
               @@bill << Wine.car?(@type, name)
-              bird.api.send_message(chat_id: type.chat.id, text: " #{@@bill}s")
             when '/mango'
               bird.api.send_message(chat_id: type.chat.id, text: "you choose a wine box with 12 bottles of sweets #{name}s")
               @@bill << Wine.car?(@type, name)
@@ -96,9 +95,9 @@ class BirdBot
           if @itmes == []
             bird.api.send_message(chat_id: info.chat.id, text: "We sorry but you don't bogught nothing")
           else
-            @items = @items.join.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '')
+            @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',',' ').gsub('//', '                                                                                ').capitalize
 
-            bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought #{@items}")
+            bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought                                                                                     #{@items}")
             bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
           end
         when '/stop'
