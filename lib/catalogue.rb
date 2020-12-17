@@ -28,11 +28,13 @@ class Wine
   def show_combo()
     @options = Wine.combo_packs
     code = @options.keys.to_s.gsub(":", "/").gsub("wine_", "").gsub("[","").gsub("]","").gsub(" ","").split(",")
+   
     show_options(@options,code)
   end
   
   def show_options(options,code=nil)
-    @code
+    @code = code
+    @options = options
     if code.nil?
       @code = @options.keys.to_s.downcase.gsub(":", "/").gsub("[","").gsub("]","").gsub(" ","").split(",")
     else
@@ -44,11 +46,13 @@ class Wine
     m = []
     while n < @options.keys.length do
     y << [@options.keys[n], "will cost:", @options.values[n], "type this code to select ->", " #{@code[n]}"]
-    m << y[n].join(",").gsub(",", " ")
+     m << y[n].join(",").gsub(",", " ")
     n+=1
     end
-    p m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
-    return m.to_s
+    m = m.to_s.gsub("," , "\n").gsub('"',"").gsub("[","").gsub("]","").gsub("_"," and ")
+    
+    m.to_s
+    
   end
   
   def self.bill?(option, code)
@@ -114,8 +118,9 @@ class Wine
   
 end
 
-
-#p Wine.show_options()
+#n = Wine.new
+#code = %w[portrait cups dinner teddy]
+#p Wine.bill?(1,"guayaba")
    #x=[]
     #x<< Wine.car?(2, "cups")
     #x<< Wine.car?(1, "mango")
