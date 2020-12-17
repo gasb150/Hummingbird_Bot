@@ -95,7 +95,7 @@ class BirdBot
           if @itmes == []
             bird.api.send_message(chat_id: info.chat.id, text: "We sorry but you don't bogught nothing")
           else
-            @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',',' ').gsub('//', '                                                                                ').capitalize
+            @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',', ' ').gsub('//', '                                                                                ').capitalize
 
             bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought                                                                                     #{@items}")
             bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
