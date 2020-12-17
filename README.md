@@ -15,7 +15,7 @@ you can choose different flavors for  single bottles, boxes with 12 bottles of w
 
 ## :video_camera: Video Description
 
-> Here you can see the video description: <a href="https://www.loom.com/share/69e17f7e05de46618bff9ec5cd23571a">Video</a>
+> Here you can see the video description: <a href="https://www.loom.com/share/f2bf2bb1e041459e854d73e095e308b1">Video</a>
 
 ## :computer: Built With
 
@@ -49,21 +49,20 @@ bundle exec ruby /bin/main.rb
 - now open your telegram and search to @JuanDlaCruzbot or use this <a href=http://t.me/JuanDlaCruzbot>Direct link</a>
 - With this bot: 
 - you can move within options, using the assigned typings. 
-<!--screan-->
+![screenshot](./src/imgs/ScreenshotStart.png)
 - if you choose single bottles 
 
 ```
 /single
 ```
+![screenshot](./src/imgs/ScreenshotSingle.png)
 - you will watch different flavor options; if you want something like "corozo" type 
 
 ```
 /corozo
 ```
-
-<!--screan-->
 - You can keep choosing any flavor.
-<!--screan-->
+![screenshot](./src/imgs/ScreenshotSingleMangoCorozo.png)
 - But if you want to select a box with 12 bottles of wine, you have to move to the previous menu
 
 ```
@@ -71,22 +70,21 @@ bundle exec ruby /bin/main.rb
 ```
 
 
-<!--screan-->
+![screenshot](./src/imgs/Screenshot_back.png)
 - And now choose a box or two.
-<!--screan-->
-<!--screan-->
+![screenshot](./src/imgs/ScreenshotBoxLuloMango.png)
 - Also, you can go and take one combo 
 ```
   /combo,
 ```
 -  going back to the last menu.
-<!--screan-->
+
 When you feel you don't want to buy anything, go to your car 
 ```
 /car
 ``` 
 and see how much you expect to spend.
-<!--screan-->
+![screenshot](./src/imgs/ScreenshotExpend.png)
 Now you know how you will spend; you can keep going, have to choose an option 
 ```
 /single, /box or /combo
@@ -95,6 +93,7 @@ Now you know how you will spend; you can keep going, have to choose an option
  ```
  "/stop."
  ```
+ ![screenshot](./src/imgs/ScreenshotStop.png)
 
 
 ## :man: Authors

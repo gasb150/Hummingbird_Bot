@@ -102,7 +102,7 @@ class BirdBot
             bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
           end
         when '/stop'
-          bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{info.from.firstname} #{info.from.lastname}")
+          bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{info.from.first_name} #{info.from.last_name}")
         end
       end
     end
