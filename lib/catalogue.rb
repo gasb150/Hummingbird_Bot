@@ -112,3 +112,12 @@ class Wine
   end
 end
 # rubocop: enable Layout/LineLength, Style/ClassVars
+imput = [
+  [' combo with ', :wine_cups, ' by $', 3_000, ' each one and, you have a sub-total of $ '],
+  [' box of ', :Mango, ' by $', 21_600.0, ' each one and, you have a sub-total of $ '],
+  [' combo with ', :wine_cups, ' by $', 3_000, ' each one and, you have a sub-total of $ '],
+  [' single bottle of ', :Mango, ' by $', 2_000, ' each one and, you have a sub-total of $ '],
+  [' box of ', :Corozo, ' by $', 2_600.0, ' each one and, you have a sub-total of $ '],
+  [' combo with ', :wine_cups, ' by $', 3_000, ' each one and, you have a sub-total of $ ']
+]
+n = Wine.new
