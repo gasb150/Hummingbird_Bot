@@ -1,4 +1,4 @@
-# rubocop: disable Metrics/AbcSize, Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/PerceivedComplexity, Metrics/MethodLength
+# rubocop: disable Layout/LineLength, Style/ClassVars
 class Wine
   attr_accessor :pasas
 
@@ -111,4 +111,4 @@ class Wine
     arr
   end
 end
-# rubocop: enable Metrics/AbcSize, Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/PerceivedComplexity, Metrics/MethodLength
+# rubocop: enable Layout/LineLength, Style/ClassVars

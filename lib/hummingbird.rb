@@ -1,4 +1,4 @@
-# rubocop: disable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/PerceivedComplexity, Metrics/MethodLength
+# rubocop: disable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/MethodLength
 require 'telegram/bot'
 require_relative 'catalogue'
 
@@ -108,4 +108,4 @@ class BirdBot
     end
   end
 end
-# rubocop: enable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/PerceivedComplexity, Metrics/MethodLength
+# rubocop: disable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/MethodLength
