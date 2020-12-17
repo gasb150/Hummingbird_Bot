@@ -75,7 +75,7 @@ bundle exec ruby /bin/main.rb
 ![screenshot](./src/imgs/ScreenshotBoxLuloMango.png)
 - Also, you can go and take one combo 
 ```
-  /combo,
+  /combo
 ```
 -  going back to the last menu.
 
@@ -91,7 +91,7 @@ Now you know how you will spend; you can keep going, have to choose an option
 ```
  but if you want to stop, try typing 
  ```
- "/stop."
+ /stop
  ```
  ![screenshot](./src/imgs/ScreenshotStop.png)
 
