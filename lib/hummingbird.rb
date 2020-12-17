@@ -1,14 +1,6 @@
 require 'telegram/bot'
 require_relative 'catalogue'
 
-require 'ripl'
-module Ripl::SlicedInspect
-  def format_result(result)
-    result_prompt + result.inspect.slice(MAX_LEN)
-  end
-end
-Ripl::Shell.send :include, Ripl::SlicedInspect
-
 class BirdBot
   @@n = "If you want to buy a single wine bottle, you can type /single; if you want a box with 12 bottles /box; if you wanted some combos type /combo, and if you want a complete bill description type /car if you want to finish this chat, you can type /stop"
   @@bill = Array.new
