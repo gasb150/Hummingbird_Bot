@@ -130,5 +130,6 @@ n = Wine.new
   x<<Wine.car?(2,"cups")
 #x = [[2, [:Corozo, 2000], [3, :Lulo, 2000], [4, :Guayaba, 2000]]
 #p Wine.show_bill(x)
+#p x
  p n = Wine.car(x)
-   Wine.show_bill(n)
+  # Wine.show_bill(n)

@@ -4,8 +4,15 @@
   #let(:code) { %w[ /combo /single /box /mango /corozo /lulo /guyaba /portrait /cups /dinner /teddy /back /car /stop ]}
   let(:code1) {%w[portrait cups dinner teddy]}
   let(:code2) {nil}
-  let(:bill1) {[[1, [], 9000],[1, [], 21600],[1, [], 2000],[1, [], 21600]]}
-  let(:bill2) {[[1, [], nil],[1, [], 21600],[1, [], 2000],[1, [], 21600]]}
+  let(:bill) {[[1, [], 9000],[1, [], 21600],[1, [], 2000],[1, [], 21600]]}
+  let(:car_imput) {[
+  [" combo with ", :wine_cups, " by $", 3000, " each one and, you have a sub-total of $ "],
+  [" box of ", :Mango, " by $", 21600.0, " each one and, you have a sub-total of $ "],
+  [" combo with ", :wine_cups, " by $", 3000, " each one and, you have a sub-total of $ "],
+  [" single bottle of ", :Mango, " by $", 2000, " each one and, you have a sub-total of $ "],
+  [" box of ", :Corozo, " by $", 21600.0, " each one and, you have a sub-total of $ "],
+  [" combo with ", :wine_cups, " by $", 3000, " each one and, you have a sub-total of $ "]
+]}
   context 'show_options' do
     it 'show the box options' do
     to_expect = "Corozo will cost: 21600.0 type this code to select ->  /corozo\n Mango will cost: 21600.0 type this code to select ->  /mango\n Lulo will cost: 32400.0 type this code to select ->  /lulo\n Guayaba will cost: 21600.0 type this code to select ->  /guayaba"
@@ -51,11 +58,14 @@
   end
   context 'show_bill' do
     it 'return the value of a bill' do 
-       expect(Wine.show_bill(bill1).to_i).to eql(54200)
+       expect(Wine.show_bill(bill).to_i).to eql(54200)
     end
-    it 'return the value of a bill' do 
-      expect(Wine.show_bill(bill2).to_i).to eql(54200)
-   end
+  end
+  context 'car' do
+    it 'return subtotals of purchase' do
+      to_expect = [[3, [" combo with ", :wine_cups, " by $", 3000, " each one and, you have a sub-total of $ "], 9000], [1, [" box of ", :Mango, " by $", 21600.0, " each one and, you have a sub-total of $ "], 21600.0], [1, [" single bottle of ", :Mango, " by $", 2000, " each one and, you have a sub-total of $ "], 2000], [1, [" box of ", :Corozo, " by $", 21600.0, " each one and, you have a sub-total of $ "], 21600.0]]
+      expect(Wine.car(car_imput)).to eql(to_expect)
+    end
   end
 end
  
