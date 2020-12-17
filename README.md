@@ -2,7 +2,7 @@
 
 In this project, I made a bot to help clients have a quotation for a wine sale.
 
-![screenshot](./src/img/screenshot.png)
+![screenshot](./src/imgs/ScreenshotStart.png)
 
 In this project, I make a Telegram wine quote bot using the API given by the BotFather from telegram.
 # Descrition
