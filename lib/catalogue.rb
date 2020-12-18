@@ -4,7 +4,6 @@ class Wine
 
   @@prices = [2_000, 2_000, 3_000, 2_000]
 
-  
   def self.bill?(option, code)
     @code = code.capitalize.to_sym
     @option = option
@@ -81,27 +80,6 @@ class Wine
 
   private
 
-  def show_options(options, code = nil)
-    @code = code
-    @options = options
-    if @code.nil?
-      @code = @options.keys.to_s.downcase.gsub(':', '/').gsub('[', '').gsub(']', '').gsub(' ', '').split(',')
-    else
-      @code
-    end
-    @options = options
-    n = 0
-    y = []
-    m = []
-    while n < @options.keys.length
-      y << [@options.keys[n], 'will cost:', @options.values[n], 'type this code to select ->', " #{@code[n]}"]
-      m << y[n].join(',').gsub(',', ' ')
-      n += 1
-    end
-    m = m.to_s.gsub(',', '                                  ').gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
-    m.to_s
-  end
-
   @@single_bottles = { Corozo: @@prices[0], Mango: @@prices[1], Lulo: @@prices[2], Guayaba: @@prices[3] }
 
   @@combo_packs = { wine_portrait: 4_000, wine_cups: 3_000, wine_dinner: 2_323, wine_teddy: 1_231 }
@@ -125,16 +103,9 @@ class Wine
       m << y[n].join(',').gsub(',', ' ')
       n += 1
     end
-    new_line=('                                                                                                         ')
-    m = m.to_s.gsub(',',new_line ).gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
+    new_line = '                                                                                                         '
+    m = m.to_s.gsub(',', new_line).gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
     m.to_s
   end
-
-  
-
- 
-  
 end
 # rubocop: enable Layout/LineLength, Style/ClassVars
-
-p Wine.car?(3, 'corozo')
