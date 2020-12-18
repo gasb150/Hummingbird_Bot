@@ -53,33 +53,37 @@ describe Wine do
   end
   context 'show_single' do
     it 'returns an string with the options of single option' do
-      to_expect = 'Corozo will cost: 2000 type this code to select ->  /corozo                                   Mango will cost: 2000 type this code to select ->  /mango                                   Lulo will cost: 3000 type this code to select ->  /lulo                                   Guayaba will cost: 2000 type this code to select ->  /guayaba'
+      to_expect = 'Corozo will cost: 2000 type this code to select ->  /corozo                                                                                                          Mango will cost: 2000 type this code to select ->  /mango                                                                                                          Lulo will cost: 3000 type this code to select ->  /lulo                                                                                                          Guayaba will cost: 2000 type this code to select ->  /guayaba'
       expect(n.show_single).to eql(to_expect)
     end
   end
   context 'show_box' do
     it 'returns an string with the options of single option' do
-      to_expect = 'Corozo will cost: 21600.0 type this code to select ->  /corozo                                   Mango will cost: 21600.0 type this code to select ->  /mango                                   Lulo will cost: 32400.0 type this code to select ->  /lulo                                   Guayaba will cost: 21600.0 type this code to select ->  /guayaba'
+      to_expect = 'Corozo will cost: 21600.0 type this code to select ->  /corozo                                                                                                          Mango will cost: 21600.0 type this code to select ->  /mango                                                                                                          Lulo will cost: 32400.0 type this code to select ->  /lulo                                                                                                          Guayaba will cost: 21600.0 type this code to select ->  /guayaba'
       expect(n.show_box).to eql(to_expect)
     end
   end
   context 'show_combo' do
     it 'returns an string with the options avoiding the second argument' do
-      to_expect = 'wine and portrait will cost: 4000 type this code to select ->  /portrait                                   wine and cups will cost: 3000 type this code to select ->  /cups                                   wine and dinner will cost: 2323 type this code to select ->  /dinner                                   wine and teddy will cost: 1231 type this code to select ->  /teddy'
+      to_expect = 'wine and portrait will cost: 4000 type this code to select ->  /portrait                                                                                                          wine and cups will cost: 3000 type this code to select ->  /cups                                                                                                          wine and dinner will cost: 2323 type this code to select ->  /dinner                                                                                                          wine and teddy will cost: 1231 type this code to select ->  /teddy'
       expect(n.show_combo).to eql(to_expect)
     end
   end
   context 'car?' do
-    it 'returns an array of cost with the actual value' do
-      to_expect = [' box of ', :Corozo, ' by $', 21600.0, ' each one and, you have a sub-total of $']
+    it 'returns an array of cost with the actual key and value boxes' do
+      to_expect = [' box of ', :Corozo, ' by $', 21_600.0, ' each one and, you have a sub-total of $']
       expect(Wine.car?(1, 'corozo')).to eql(to_expect)
     end
-    it 'returns an array with empty key and value ' do
+    it "returns an array with empty key and value if doesn't match option (integer) with code (string)" do
       to_expect = [' combo with ', :"", ' by $', nil, ' each one and, you have a sub-total of $']
       expect(Wine.car?(2, 'corozo')).to eql(to_expect)
     end
-    it 'returns an array of cost with the actual value' do
-      to_expect = [' single bottle of ', :Corozo, ' by $', 2000, ' each one and, you have a sub-total of $']
+    it 'returns an array of cost with the actual key and value of single bottles' do
+      to_expect = [' combo with ', :wine_cups, ' by $', 3000, ' each one and, you have a sub-total of $']
+      expect(Wine.car?(2, 'cups')).to eql(to_expect)
+    end
+    it 'returns an array of cost with the actual key and value of single bottles' do
+      to_expect = [' single bottle of ', :Corozo, ' by $', 2_000, ' each one and, you have a sub-total of $']
       expect(Wine.car?(3, 'corozo')).to eql(to_expect)
     end
   end
