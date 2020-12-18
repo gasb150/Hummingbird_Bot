@@ -10,12 +10,12 @@ class Wine
     @option = option
     case @option
     when 1
-      boxes[@code].to_i
+      @@boxes[@code].to_i
     when 2
-      @code = (combo_packs.keys.select { |k| k.to_s.include?(@code.to_s.downcase) }).join.to_sym
-      combo_packs[@code].to_i
+      @code = (@@combo_packs.keys.select { |k| k.to_s.include?(@code.to_s.downcase) }).join.to_sym
+      @@combo_packs[@code].to_i
     when 3
-      single_bottles[@code].to_i
+      @@single_bottles[@code].to_i
     end
   end
 
@@ -45,17 +45,17 @@ class Wine
   end
 
   def show_single
-    @options = Wine.single_bottles
+    @options = @@single_bottles
     show_options(@options)
   end
 
   def show_box
-    @options = Wine.boxes
+    @options = @@boxes
     show_options(@options)
   end
 
   def show_combo
-    @options = Wine.combo_packs
+    @options = @@combo_packs
     code = @options.keys.to_s.gsub('wine_', '').gsub(':', '/').gsub('[', '').gsub(']', '').gsub(' ', '').split(',')
     show_options(@options, code)
   end
@@ -83,18 +83,15 @@ class Wine
     m.to_s
   end
 
+  private
 
-  def self.single_bottles
-    { Corozo: @@prices[0], Mango: @@prices[1], Lulo: @@prices[2], Guayaba: @@prices[3] }
-  end
+  @@single_bottles = { Corozo: @@prices[0], Mango: @@prices[1], Lulo: @@prices[2], Guayaba: @@prices[3] }
 
-  def self.combo_packs
-    { wine_portrait: 4_000, wine_cups: 3_000, wine_dinner: 2_323, wine_teddy: 1_231 }
-  end
+  private
 
-  def self.boxes
-    { Corozo: (@@prices[0] * (1 - 0.1) * 12), Mango: (@@prices[1] * (1 - 0.1) * 12), Lulo: (@@prices[2] * (1 - 0.1) * 12), Guayaba: (@@prices[3] * (1 - 0.1) * 12) }
-  end
+  @@combo_packs = { wine_portrait: 4_000, wine_cups: 3_000, wine_dinner: 2_323, wine_teddy: 1_231 }
+
+  @@boxes = { Corozo: (@@prices[0] * (1 - 0.1) * 12), Mango: (@@prices[1] * (1 - 0.1) * 12), Lulo: (@@prices[2] * (1 - 0.1) * 12), Guayaba: (@@prices[3] * (1 - 0.1) * 12) }
 
   
 
@@ -115,7 +112,8 @@ class Wine
       m << y[n].join(',').gsub(',', ' ')
       n += 1
     end
-    m = m.to_s.gsub(',', '                                  ').gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
+    new_line=('                                                                                                         ')
+    m = m.to_s.gsub(',',new_line ).gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
     m.to_s
   end
 
@@ -128,14 +126,14 @@ class Wine
     @op = ''
     case @option
     when 1
-      value = boxes[@code]
+      value = @@boxes[@code]
       @op = ' box of '
     when 2
-      @code = (combo_packs.keys.select { |k| k.to_s.include?(@code.to_s.downcase) }).join.to_sym
-      value = combo_packs[@code]
+      @code = (@@combo_packs.keys.select { |k| k.to_s.include?(@code.to_s.downcase) }).join.to_sym
+      value = @@combo_packs[@code]
       @op = ' combo with '
     when 3
-      value = single_bottles[@code]
+      value = @@single_bottles[@code]
       @op = ' single bottle of '
     end
     [@op, @code, ' by $', value, ' each one and, you have a sub-total of $']
@@ -147,4 +145,3 @@ end
 
 n = Wine.new
 
-p n.show_combo
