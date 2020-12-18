@@ -1,3 +1,4 @@
+# rubocop: disable Metrics/CyclomaticComplexity Metrics/MethodLength
 require 'telegram/bot'
 require_relative 'catalogue'
 require 'dotenv'
@@ -24,7 +25,7 @@ class BirdBot
     bird.api.send_message(chat_id: type.chat.id, text: text_start)
   end
 
-  def send_optionMessage(bird, type, option, info)
+  def send_option_message(bird, type, option, info)
     case type
     when 1
       tex_p1 = 'You chose boxes catalog, here exist these options, '
@@ -44,7 +45,7 @@ class BirdBot
   def box_menu(bird, option, info)
     @type = 1
     @option = option
-    send_optionMessage(bird, @type, @option, info)
+    send_option_message(bird, @type, @option, info)
     bird.listen do |type|
       case type.text
       when '/corozo'
@@ -68,7 +69,7 @@ class BirdBot
 
   def combo_menu(bird, option, info)
     @type = 2
-    send_optionMessage(bird, @type, option, info)
+    send_option_message(bird, @type, option, info)
     bird.listen do |type|
       case type.text
       when '/portrait'
@@ -92,7 +93,7 @@ class BirdBot
 
   def single_menu(bird, option, info)
     @type = 3
-    send_optionMessage(bird, @type, option, info)
+    send_option_message(bird, @type, option, info)
     bird.listen do |type|
       case type.text
       when '/corozo'
@@ -141,16 +142,12 @@ class BirdBot
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{@g_n} #{@l_n}#{tx_init}#{text_start} ")
         when '/box'
           box_menu(bird, @option, info)
-
         when '/combo'
           combo_menu(bird, @option, info)
-
         when '/single'
           single_menu(bird, @option, info)
-
         when '/car'
           car_menu(bird, info, bill_var)
-
         when '/stop'
           bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{@f_n} #{@l_n} ")
         end
@@ -158,3 +155,4 @@ class BirdBot
     end
   end
 end
+# rubocop: enable Metrics/CyclomaticComplexity Metrics/MethodLength
