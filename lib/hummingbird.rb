@@ -24,6 +24,23 @@ class BirdBot
     bird.api.send_message(chat_id: type.chat.id, text: text_start)
   end
 
+  def send_optionMessage(bird,type,option, info)
+    case type
+    when 1
+      tex_p1 = 'You chose boxes catalog, here exist these options, '
+      tex_p2 = 'you can select one option using code in the right \n '
+    when 2
+      tex_p1 = 'You chose combo catalogue, there exist this options, '
+      tex_p2 = 'you can select one option using code in the right \n'
+    when 3
+      tex_p1 = 'You chose single catalogue, there exist this options, '
+      tex_p2 = 'you can select one option using code in the right \n'
+    end
+    tex_p3 = "#{option.show_box}, if you want to go back to the previous menu type '/back'"
+    tex_box = tex_p1 + tex_p2 + tex_p3
+    bird.api.send_message(chat_id: info.chat.id, text: tex_box)
+  end
+
   def initialize
     bill_var = []
     @token = ENV['KEY_TOKEN']
@@ -38,11 +55,7 @@ class BirdBot
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{@g_n} #{@l_n}#{tx_init}#{text_start} ")
         when '/box'
           @type = 1
-          tex_p1 = 'You chose boxes catalog, here exist these options, '
-          tex_p2 = 'you can select one option using code in the right \n '
-          tex_p3 = "#{@option.show_box}, if you want to go back to the previous menu type '/back'"
-          tex_box = tex_p1 + tex_p2 + tex_p3
-          bird.api.send_message(chat_id: info.chat.id, text: tex_box)
+          send_optionMessage(bird, @type, @option, info)
           bird.listen do |type|
             case type.text
             when '/corozo'
@@ -65,11 +78,7 @@ class BirdBot
 
         when '/combo'
           @type = 2
-          tex_p1 = 'You chose combo catalogue, there exist this options, '
-          tex_p2 = 'you can select one option using code in the right \n'
-          tex_p3 = "#{@option.show_combo}, if you want to go back to previws menu press '/back' "
-          tex_combo = tex_p1 + tex_p2 + tex_p3
-          bird.api.send_message(chat_id: info.chat.id, text: tex_combo)
+          send_optionMessage(bird, @type, @option, info)
           bird.listen do |type|
             case type.text
             when '/portrait'
@@ -91,13 +100,8 @@ class BirdBot
           end
 
         when '/single'
-
           @type = 3
-          tex_p1 = 'You chose single catalogue, there exist this options, '
-          tex_p2 = 'you can select one option using code in the right \n'
-          tex_p3 = "#{@option.show_single}, if you want to go back to previws menu press /back "
-          tex_single = tex_p1 + tex_p2 + tex_p3
-          bird.api.send_message(chat_id: info.chat.id, text: tex_single)
+          send_optionMessage(bird, @type, @option, info)
           bird.listen do |type|
             case type.text
             when '/corozo'
