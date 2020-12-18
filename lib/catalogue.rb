@@ -1,6 +1,5 @@
 # rubocop: disable Layout/LineLength, Style/ClassVars
 class Wine
-  attr_accessor :pasas
 
   @@prices = [2_000, 2_000, 3_000, 2_000]
 

@@ -2,7 +2,7 @@
 require 'telegram/bot'
 require_relative 'catalogue'
 require 'dotenv'
-Dotenv.load
+Dotenv.load('./lib/key.env')
 
 class BirdBot
   def text_start
@@ -15,8 +15,7 @@ class BirdBot
 
   def initialize
     bill_var = []
-    p ENV['KEY_TOKEN']
-    p @token
+    @token = ENV['KEY_TOKEN']
     @option = Wine.new
     Telegram::Bot::Client.run(@token) do |bird|
       bird.listen do |info|
