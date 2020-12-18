@@ -1,6 +1,8 @@
 # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength,  Metrics/BlockLength, Metrics/PerceivedComplexity
 require 'telegram/bot'
 require_relative 'catalogue'
+require 'dotenv'
+Dotenv.load
 
 class BirdBot
   def text_start
@@ -13,7 +15,8 @@ class BirdBot
 
   def initialize
     bill_var = []
-    @token = '1406170037:AAEDdK8mS6tYIe3m8jkSUaJenV5rXMeSA2I'
+    p ENV['KEY_TOKEN']
+    p @token
     @option = Wine.new
     Telegram::Bot::Client.run(@token) do |bird|
       bird.listen do |info|
