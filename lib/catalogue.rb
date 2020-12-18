@@ -101,7 +101,7 @@ class Wine
       m << y[n].join(',').gsub(',', ' ')
       n += 1
     end
-    new_line = '                                                                                                         '
+    new_line = Array.new(105, ' ').join('')
     m = m.to_s.gsub(',', new_line).gsub('"', '').gsub('[', '').gsub(']', '').gsub('_', ' and ')
     m.to_s
   end
