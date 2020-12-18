@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength,  Metrics/BlockLength, Metrics/PerceivedComplexity
 require 'telegram/bot'
 require_relative 'catalogue'
 require 'dotenv'
@@ -136,4 +135,3 @@ class BirdBot
     end
   end
 end
-# rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength,  Metrics/BlockLength, Metrics/PerceivedComplexity
