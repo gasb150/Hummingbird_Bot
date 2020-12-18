@@ -109,5 +109,3 @@ class Wine
   end
 end
 # rubocop: enable Layout/LineLength, Style/ClassVars
-n = Wine.new
-p Wine.car?(2, 'cups')

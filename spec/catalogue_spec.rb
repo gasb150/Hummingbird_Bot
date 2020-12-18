@@ -79,7 +79,7 @@ describe Wine do
       expect(Wine.car?(2, 'corozo')).to eql(to_expect)
     end
     it 'returns an array of cost with the actual key and value of single bottles' do
-      to_expect = [' combo with ', :wine_cups, ' by $', 3000, ' each one and, you have a sub-total of $']
+      to_expect = [' combo with ', :wine_cups, ' by $', 3_000, ' each one and, you have a sub-total of $']
       expect(Wine.car?(2, 'cups')).to eql(to_expect)
     end
     it 'returns an array of cost with the actual key and value of single bottles' do
