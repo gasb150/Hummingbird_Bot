@@ -95,13 +95,14 @@ Now you know how you will spend; you can keep going, have to choose an option
  ```
  ![screenshot](./src/imgs/ScreenshotStop.png)
 
-## :green_book: Test it
+## :mag_right: Test it
 > If you want to tast the unit code, type on terminal
  ```
  rspec
  ```
-
-
+ you will see something like this
+![screenshot](./src/imgs/ScreenshotUnittest.png)
+This text means everything is ok, and this tool is doing everything it's supposed to do. 
 ## :man: Authors
 
 :bird: **Gustavo Sanmartin**
