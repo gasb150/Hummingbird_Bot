@@ -4,7 +4,7 @@ In this project, I made a bot to help clients have a quotation for a wine sale.
 
 ![screenshot](./src/imgs/ScreenshotStart.png)
 
-In this project, I make a Telegram wine quote bot using the API given by the BotFather from telegram. I choose a Hummingbir Bot project, beacause I have my owm busines of wine artesanal, and I think this project could help in a future in how we can go to more people.
+In this project, I make a Telegram wine quote bot using the API given by the BotFather from telegram. I choose a Hummingbird_Bot, because I have my handcrafted wine business, and I think this project could help in the future in how we can go to more people.
 # Descrition
 With this bot: 
 you can move within options, using the assigned typings. 
@@ -96,6 +96,11 @@ Now you know how you will spend; you can keep going, have to choose an option
  ![screenshot](./src/imgs/ScreenshotStop.png)
 
 ## :green_book: Test it
+> If you want to tast the unit code, type on terminal
+ ```
+ rspec
+ ```
+
 
 ## :man: Authors
 
