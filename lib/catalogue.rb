@@ -1,6 +1,5 @@
 # rubocop: disable Layout/LineLength, Style/ClassVars
 class Wine
-
   @@prices = [2_000, 2_000, 3_000, 2_000]
 
   def self.bill?(option, code)
