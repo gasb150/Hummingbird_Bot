@@ -20,7 +20,9 @@ class BirdBot
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{info.from.first_name} #{info.from.last_name} this bot will help you to know about our products, #{text_start} ")
         when '/box'
           @type = 1
-          tex_box = "You chose boxes catalog, here exist these options, you can select one option using code in the right \n #{@option.show_box}, if you want to go back to the previous menu type '/back'"
+          tex_p1 = "You chose boxes catalog, here exist these options, you can select one option using code in the right \n "
+          tex_p2 = "#{@option.show_box}, if you want to go back to the previous menu type '/back'"
+          tex_box = tex_p1 + tex_p2
           bird.api.send_message(chat_id: info.chat.id, text: tex_box)
           bird.listen do |type|
             name = type.text.gsub('/', '')
@@ -46,7 +48,9 @@ class BirdBot
 
         when '/combo'
           @type = 2
-          tex_combo = "You chose combo catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_combo}, if you want to go back to previws menu press '/back' "
+          tex_p1 = "You chose combo catalogue, there exist this options, you can select one option using code in the right \n"
+          tex_p2 = "#{@option.show_combo}, if you want to go back to previws menu press '/back' "
+          tex_combo = tex_p1 + tex_p2
           bird.api.send_message(chat_id: info.chat.id, text: tex_combo)
           bird.listen do |type|
             name = type.text.gsub('/', '')
@@ -73,11 +77,12 @@ class BirdBot
         when '/single'
 
           @type = 3
-          tex_single = "You chose single catalogue, there exist this options, you can select one option using code in the right \n #{@option.show_single}, if you want to go back to previws menu press /back "
+          tex_p1 = "You chose single catalogue, there exist this options, you can select one option using code in the right \n"
+          tex_p2 = "#{@option.show_single}, if you want to go back to previws menu press /back "
+          tex_single =  tex_p1 + tex_p2
           bird.api.send_message(chat_id: info.chat.id, text: tex_single)
           bird.listen do |type|
             name = type.text.gsub('/', '')
-            
             case type.text
             when '/corozo'
               bird.api.send_message(chat_id: type.chat.id, text: "#{tx_cho} bottle of the strongs #{name}s")
