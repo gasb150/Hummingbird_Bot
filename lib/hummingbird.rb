@@ -1,9 +1,10 @@
-# rubocop: disable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/MethodLength
 require 'telegram/bot'
 require_relative 'catalogue'
 
 class BirdBot
-  @@n = 'If you want to buy a single wine bottle, you can type /single; if you want a box with 12 bottles /box; if you wanted some combos type /combo, and if you want a complete bill description type /car if you want to finish this chat, you can type /stop'
+  def text_start
+    @n = 'If you want to buy a single wine bottle, you can type /single; if you want a box with 12 bottles /box; if you wanted some combos type /combo, and if you want a complete bill description type /car if you want to finish this chat, you can type /stop'
+  end
   @@bill = []
   def initialize
     @token = '1406170037:AAEDdK8mS6tYIe3m8jkSUaJenV5rXMeSA2I'
@@ -12,7 +13,7 @@ class BirdBot
       bird.listen do |info|
         case info.text
         when '/start'
-          bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{info.from.first_name} #{info.from.last_name} this bot will help you to know about our products, #{@@n} ")
+          bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{info.from.first_name} #{info.from.last_name} this bot will help you to know about our products, #{text_start} ")
         when '/box'
           @type = 1
           bird.api.send_message(chat_id: info.chat.id, text: "You chose boxes catalog, here exist these options, you can select one option using code in the right \n #{@option.show_box}, if you want to go back to the previous menu type '/back'")
@@ -33,7 +34,7 @@ class BirdBot
               @@bill << Wine.car?(@type, name)
             when '/back'
               bird.api.send_message(chat_id: type.chat.id, text: 'now you can move to previues directories ')
-              bird.api.send_message(chat_id: type.chat.id, text: @@n)
+              bird.api.send_message(chat_id: type.chat.id, text: text_start)
               break
             end
           end
@@ -58,7 +59,7 @@ class BirdBot
               @@bill << Wine.car?(@type, name)
             when '/back'
               bird.api.send_message(chat_id: type.chat.id, text: 'now you can move to previues directories ')
-              bird.api.send_message(chat_id: type.chat.id, text: @@n)
+              bird.api.send_message(chat_id: type.chat.id, text: text_start)
               break
             end
           end
@@ -84,7 +85,7 @@ class BirdBot
               @@bill << Wine.car?(@type, name)
             when '/back'
               bird.api.send_message(chat_id: type.chat.id, text: 'now you can move to previues directories ')
-              bird.api.send_message(chat_id: type.chat.id, text: @@n)
+              bird.api.send_message(chat_id: type.chat.id, text: text_start)
               break
             end
           end
@@ -92,19 +93,20 @@ class BirdBot
           @items = Wine.car(@@bill)
           @total = Wine.show_bill(@items)
           if @items.empty?
-            p "kk"
             bird.api.send_message(chat_id: info.chat.id, text: "We sorry but you don't bogught nothing")
           else
-            p "lll"
-            @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',', ' ').gsub('//', '                                                                                ').capitalize
-            bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought                                                                                     #{@items}")
+            sp = '                                                                                     '
+            @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',', ' ').gsub('//', sp)
+            @itmes = @itmes..capitalize
+            bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought #{sp} #{@items}")
             bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
           end
         when '/stop'
-          bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{info.from.first_name} #{info.from.last_name}")
+          f_n = info.from.first_name
+          l_n = info.from.last_name
+          bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{f_n} #{l_n} ")
         end
       end
     end
   end
 end
-# rubocop: enable Layout/LineLength, Style/ClassVars, Metrics/BlockLength, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/MethodLength
