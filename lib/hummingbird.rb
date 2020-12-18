@@ -114,13 +114,13 @@ class BirdBot
             end
           end
         when '/car'
-          p @items = Wine.car(bill_var)
+          @items = Wine.car(bill_var)
           @total = Wine.show_bill(@items)
           if @items.empty?
             bird.api.send_message(chat_id: info.chat.id, text: "We sorry but you don't bogught nothing")
           else
             sp = '                                                                                     '
-            p @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',', ' ').gsub('//', sp)
+            @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',', ' ').gsub('//', sp)
             bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought #{sp} #{@items}")
             bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
           end
