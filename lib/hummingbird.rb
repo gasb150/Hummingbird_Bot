@@ -3,26 +3,32 @@ require_relative 'catalogue'
 
 class BirdBot
   def text_start
-    @n = 'If you want to buy a single wine bottle, you can type /single; if you want a box with 12 bottles /box; if you wanted some combos type /combo, and if you want a complete bill description type /car if you want to finish this chat, you can type /stop'
+    tx_1 = 'If you want to buy a single wine bottle, you can type /single;'
+    tx_2 = 'if you want a box with 12 bottles /box;'
+    tx_3 = 'if you wanted some combos type /combo,'
+    tx_4 = 'if you want a complete bill description type /car'
+    @n = "#{tx_1} #{tx_2} #{tx_3} and #{tx_4} if you want to finish this chat, you can type /stop"
   end
 
- 
-
   def initialize
+
     bill_var = []
     @token = '1406170037:AAEDdK8mS6tYIe3m8jkSUaJenV5rXMeSA2I'
     @option = Wine.new
     Telegram::Bot::Client.run(@token) do |bird|
       bird.listen do |info|
+        @f_n = info.from.first_name
+        @l_n = info.from.last_name
         tx_cho = 'you choose a wine'
         case info.text
         when '/start'
-          bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{info.from.first_name} #{info.from.last_name} this bot will help you to know about our products, #{text_start} ")
+          bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{@g_n} #{@l_n} this bot will help you to know about our products, #{text_start} ")
         when '/box'
           @type = 1
-          tex_p1 = "You chose boxes catalog, here exist these options, you can select one option using code in the right \n "
-          tex_p2 = "#{@option.show_box}, if you want to go back to the previous menu type '/back'"
-          tex_box = tex_p1 + tex_p2
+          tex_p1 = "You chose boxes catalog, here exist these options, "
+          tex_p2 = "you can select one option using code in the right \n "
+          tex_p3 = "#{@option.show_box}, if you want to go back to the previous menu type '/back'"
+          tex_box = tex_p1 + tex_p2 + tex_p3
           bird.api.send_message(chat_id: info.chat.id, text: tex_box)
           bird.listen do |type|
             name = type.text.gsub('/', '')
@@ -34,7 +40,7 @@ class BirdBot
               bird.api.send_message(chat_id: type.chat.id, text: "#{tx_cho} box with 12 bottles of sweets #{name}s")
               bill_var << Wine.car?(@type, name)
             when '/lulo'
-              bird.api.send_message(chat_id: type.chat.id, text: "#{tx_cho} box with 12 bottles of not much acids #{name}s")
+              bird.api.send_message(chat_id: type.chat.id, text: "#{tx_cho} box with 12 bottles of not acids #{name}s")
               bill_var << Wine.car?(@type, name)
             when '/guayaba'
               bird.api.send_message(chat_id: type.chat.id, text: "#{tx_cho} box with 12 bottles of exotics #{name}s")
@@ -48,9 +54,10 @@ class BirdBot
 
         when '/combo'
           @type = 2
-          tex_p1 = "You chose combo catalogue, there exist this options, you can select one option using code in the right \n"
-          tex_p2 = "#{@option.show_combo}, if you want to go back to previws menu press '/back' "
-          tex_combo = tex_p1 + tex_p2
+          tex_p1 = "You chose combo catalogue, there exist this options, "
+          tex_p2 = "you can select one option using code in the right \n"
+          tex_p3 = "#{@option.show_combo}, if you want to go back to previws menu press '/back' "
+          tex_combo = tex_p1 + tex_p2 + tex_p3
           bird.api.send_message(chat_id: info.chat.id, text: tex_combo)
           bird.listen do |type|
             name = type.text.gsub('/', '')
@@ -77,9 +84,10 @@ class BirdBot
         when '/single'
 
           @type = 3
-          tex_p1 = "You chose single catalogue, there exist this options, you can select one option using code in the right \n"
-          tex_p2 = "#{@option.show_single}, if you want to go back to previws menu press /back "
-          tex_single =  tex_p1 + tex_p2
+          tex_p1 = "You chose single catalogue, there exist this options, "
+          tex_p2 = "you can select one option using code in the right \n"
+          tex_p3 = "#{@option.show_single}, if you want to go back to previws menu press /back "
+          tex_single = tex_p1 + tex_p2 + tex_p3
           bird.api.send_message(chat_id: info.chat.id, text: tex_single)
           bird.listen do |type|
             name = type.text.gsub('/', '')
@@ -114,9 +122,9 @@ class BirdBot
             bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
           end
         when '/stop'
-          f_n = info.from.first_name
-          l_n = info.from.last_name
-          bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{f_n} #{l_n} ")
+         
+          bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{@f_n} #{@l_n} ")
+          
         end
       end
     end

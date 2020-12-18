@@ -69,5 +69,19 @@ describe Wine do
       expect(n.show_combo).to eql(to_expect)
     end
   end
+  context 'car?' do
+    it 'returns an array of cost with the actual value' do
+      to_expect = [" box of ", :Corozo, " by $", 21600.0, " each one and, you have a sub-total of $"]
+      expect(Wine.car?(1, 'corozo')).to eql(to_expect)
+    end
+    it 'returns an array with empty key and value ' do
+      to_expect = [" combo with ", :"", " by $", nil, " each one and, you have a sub-total of $"]
+      expect(Wine.car?(2, 'corozo')).to eql(to_expect)
+    end
+    it 'returns an array of cost with the actual value' do
+      to_expect = [" single bottle of ", :Corozo, " by $", 2000, " each one and, you have a sub-total of $"]
+      expect(Wine.car?(3, 'corozo')).to eql(to_expect)
+    end
+  end
 end
 # rubocop:enable Layout/LineLength

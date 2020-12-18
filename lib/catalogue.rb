@@ -60,6 +60,25 @@ class Wine
     show_options(@options, code)
   end
 
+  def self.car?(option, code)
+    @code = code.capitalize.to_sym
+    @option = option
+    @op = ''
+    case @option
+    when 1
+      value = @@boxes[@code]
+      @op = ' box of '
+    when 2
+      @code = (@@combo_packs.keys.select { |k| k.to_s.include?(@code.to_s.downcase) }).join.to_sym
+      value = @@combo_packs[@code]
+      @op = ' combo with '
+    when 3
+      value = @@single_bottles[@code]
+      @op = ' single bottle of '
+    end
+    [@op, @code, ' by $', value, ' each one and, you have a sub-total of $']
+  end
+
   private
 
   def show_options(options, code = nil)
@@ -83,17 +102,11 @@ class Wine
     m.to_s
   end
 
-  private
-
   @@single_bottles = { Corozo: @@prices[0], Mango: @@prices[1], Lulo: @@prices[2], Guayaba: @@prices[3] }
-
-  private
 
   @@combo_packs = { wine_portrait: 4_000, wine_cups: 3_000, wine_dinner: 2_323, wine_teddy: 1_231 }
 
   @@boxes = { Corozo: (@@prices[0] * (1 - 0.1) * 12), Mango: (@@prices[1] * (1 - 0.1) * 12), Lulo: (@@prices[2] * (1 - 0.1) * 12), Guayaba: (@@prices[3] * (1 - 0.1) * 12) }
-
-  
 
   def show_options(options, code = nil)
     @code = code
@@ -120,28 +133,8 @@ class Wine
   
 
  
-  def self.car?(option, code)
-    @code = code.capitalize.to_sym
-    @option = option
-    @op = ''
-    case @option
-    when 1
-      value = @@boxes[@code]
-      @op = ' box of '
-    when 2
-      @code = (@@combo_packs.keys.select { |k| k.to_s.include?(@code.to_s.downcase) }).join.to_sym
-      value = @@combo_packs[@code]
-      @op = ' combo with '
-    when 3
-      value = @@single_bottles[@code]
-      @op = ' single bottle of '
-    end
-    [@op, @code, ' by $', value, ' each one and, you have a sub-total of $']
-  end
-
   
 end
 # rubocop: enable Layout/LineLength, Style/ClassVars
 
-n = Wine.new
-
+p Wine.car?(3, 'corozo')
