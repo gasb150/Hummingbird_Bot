@@ -41,6 +41,91 @@ class BirdBot
     bird.api.send_message(chat_id: info.chat.id, text: tex_box)
   end
 
+  def box_menu (bird, option, info)
+    @type = 1
+    send_optionMessage(bird, @type, option, info)
+    bird.listen do |type|
+      case type.text
+      when '/corozo'
+        msg = 'bottle of the strongs'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/mango'
+        msg = 'bottles of sweets'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/lulo'
+        msg = 'bottles of not acids'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/guayaba'
+        msg = 'bottles of exotics'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/back'
+        previous_back(bird, type)
+        break
+      end
+    end
+  end
+
+  def combo_menu (bird, option, info)
+    @type = 2
+    send_optionMessage(bird, @type, @option, info)
+    bird.listen do |type|
+      case type.text
+      when '/portrait'
+        msg = 'bottle and a beatifull'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/cups'
+        msg = 'bottle and 2 brilliants'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/dinner'
+        msg = 'bottle and a amaizing'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/teddy'
+        msg = 'bottle and a cute'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/back'
+        previous_back(bird, type)
+        break
+      end
+    end
+  end
+  
+  def single_menu (bird, option, info)
+    @type = 3
+    send_optionMessage(bird, @type, @option, info)
+    bird.listen do |type|
+      case type.text
+      when '/corozo'
+        msg = 'bottle of the strongs'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/mango'
+        msg = 'bottle with sweets'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/lulo'
+        msg = 'bottle with of not much acids'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/guayaba'
+        msg = 'bottle with the exotics'
+        api_send(bird, type, @type, msg, bill_var)
+      when '/back'
+        previous_back(bird, type)
+        break
+      end
+    end
+  end
+
+  def car_menu(bird, info, bill_var)
+    @items = Wine.car(bill_var)
+    @total = Wine.show_bill(@items)
+    if @items.empty?
+      bird.api.send_message(chat_id: info.chat.id, text: "We sorry but you don't bogught nothing")
+    else
+      sp = Array.new(100, ' ').join('')
+      @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',', ' ').gsub('//', sp)
+      bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought #{sp} #{@items}")
+      bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
+    end
+  end
+
   def initialize
     bill_var = []
     @token = ENV['KEY_TOKEN']
@@ -54,84 +139,17 @@ class BirdBot
           tx_init = ' this bot will help you to know about our products, '
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{@g_n} #{@l_n}#{tx_init}#{text_start} ")
         when '/box'
-          @type = 1
-          send_optionMessage(bird, @type, @option, info)
-          bird.listen do |type|
-            case type.text
-            when '/corozo'
-              msg = 'bottle of the strongs'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/mango'
-              msg = 'bottles of sweets'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/lulo'
-              msg = 'bottles of not acids'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/guayaba'
-              msg = 'bottles of exotics'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/back'
-              previous_back(bird, type)
-              break
-            end
-          end
+          box_menu(bird, @option, info)
 
         when '/combo'
-          @type = 2
-          send_optionMessage(bird, @type, @option, info)
-          bird.listen do |type|
-            case type.text
-            when '/portrait'
-              msg = 'bottle and a beatifull'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/cups'
-              msg = 'bottle and 2 brilliants'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/dinner'
-              msg = 'bottle and a amaizing'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/teddy'
-              msg = 'bottle and a cute'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/back'
-              previous_back(bird, type)
-              break
-            end
-          end
+          combo_menu(bird, @option, info)
 
         when '/single'
-          @type = 3
-          send_optionMessage(bird, @type, @option, info)
-          bird.listen do |type|
-            case type.text
-            when '/corozo'
-              msg = 'bottle of the strongs'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/mango'
-              msg = 'bottle with sweets'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/lulo'
-              msg = 'bottle with of not much acids'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/guayaba'
-              msg = 'bottle with the exotics'
-              api_send(bird, type, @type, msg, bill_var)
-            when '/back'
-              previous_back(bird, type)
-              break
-            end
-          end
+          single_menu(bird, @option, info)
+
         when '/car'
-          @items = Wine.car(bill_var)
-          @total = Wine.show_bill(@items)
-          if @items.empty?
-            bird.api.send_message(chat_id: info.chat.id, text: "We sorry but you don't bogught nothing")
-          else
-            sp = Array.new(100, ' ').join('')
-            @items = @items.to_s.gsub('[', '').gsub(']', '').gsub('"', '').gsub(':', '').gsub(',', ' ').gsub('//', sp)
-            bird.api.send_message(chat_id: info.chat.id, text: "those are the items you bought #{sp} #{@items}")
-            bird.api.send_message(chat_id: info.chat.id, text: "this is the total of your purchase $#{@total} ")
-          end
+          car_menu(bird, info, bill_var)
+
         when '/stop'
           bird.api.send_message(chat_id: info.chat.id, text: "Tanks to talk with me #{@f_n} #{@l_n} ")
         end
