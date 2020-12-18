@@ -24,7 +24,7 @@ class BirdBot
     bird.api.send_message(chat_id: type.chat.id, text: text_start)
   end
 
-  def send_optionMessage(bird,type,option, info)
+  def send_optionMessage(bird, type, option, info)
     case type
     when 1
       tex_p1 = 'You chose boxes catalog, here exist these options, '
@@ -41,9 +41,10 @@ class BirdBot
     bird.api.send_message(chat_id: info.chat.id, text: tex_box)
   end
 
-  def box_menu (bird, option, info)
+  def box_menu(bird, option, info)
     @type = 1
-    send_optionMessage(bird, @type, option, info)
+    @option = option
+    send_optionMessage(bird, @type, @option, info)
     bird.listen do |type|
       case type.text
       when '/corozo'
@@ -65,9 +66,9 @@ class BirdBot
     end
   end
 
-  def combo_menu (bird, option, info)
+  def combo_menu(bird, option, info)
     @type = 2
-    send_optionMessage(bird, @type, @option, info)
+    send_optionMessage(bird, @type, option, info)
     bird.listen do |type|
       case type.text
       when '/portrait'
@@ -88,10 +89,10 @@ class BirdBot
       end
     end
   end
-  
-  def single_menu (bird, option, info)
+
+  def single_menu(bird, option, info)
     @type = 3
-    send_optionMessage(bird, @type, @option, info)
+    send_optionMessage(bird, @type, option, info)
     bird.listen do |type|
       case type.text
       when '/corozo'
