@@ -30,19 +30,22 @@ class BirdBot
     when 1
       tex_p1 = 'You chose boxes catalog, here exist these options, '
       tex_p2 = 'you can select one option using code in the right \n '
+      option_s = option.show_box
     when 2
       tex_p1 = 'You chose combo catalogue, there exist this options, '
       tex_p2 = 'you can select one option using code in the right \n'
+      option_s = option.show_combo
     when 3
       tex_p1 = 'You chose single catalogue, there exist this options, '
       tex_p2 = 'you can select one option using code in the right \n'
+      option_s = option.show_single
     end
-    tex_p3 = "#{option.show_box}, if you want to go back to the previous menu type '/back'"
+    tex_p3 = "#{option_s}, if you want to go back to the previous menu type '/back'"
     tex_box = tex_p1 + tex_p2 + tex_p3
     bird.api.send_message(chat_id: info.chat.id, text: tex_box)
   end
 
-  def box_menu(bird, option, info)
+  def box_menu(bird, option, info, bill_var)
     @type = 1
     @option = option
     send_option_message(bird, @type, @option, info)
@@ -67,7 +70,7 @@ class BirdBot
     end
   end
 
-  def combo_menu(bird, option, info)
+  def combo_menu(bird, option, info, bill_var)
     @type = 2
     send_option_message(bird, @type, option, info)
     bird.listen do |type|
@@ -91,7 +94,7 @@ class BirdBot
     end
   end
 
-  def single_menu(bird, option, info)
+  def single_menu(bird, option, info, bill_var)
     @type = 3
     send_option_message(bird, @type, option, info)
     bird.listen do |type|
@@ -141,11 +144,11 @@ class BirdBot
           tx_init = ' this bot will help you to know about our products, '
           bird.api.send_message(chat_id: info.chat.id, text: "Hello, #{@g_n} #{@l_n}#{tx_init}#{text_start} ")
         when '/box'
-          box_menu(bird, @option, info)
+          box_menu(bird, @option, info, bill_var)
         when '/combo'
-          combo_menu(bird, @option, info)
+          combo_menu(bird, @option, info, bill_var)
         when '/single'
-          single_menu(bird, @option, info)
+          single_menu(bird, @option, info, bill_var)
         when '/car'
           car_menu(bird, info, bill_var)
         when '/stop'
