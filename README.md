@@ -45,6 +45,10 @@ bundle install
 - and for run
 ```
 bundle exec ruby /bin/main.rb
+
+           or
+           
+bundle exec ruby bin/main.rb
 ```
 - now open your telegram and search to @JuanDlaCruzbot or use this <a href=http://t.me/JuanDlaCruzbot>Direct link</a>
 - With this bot: 
