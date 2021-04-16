@@ -4,11 +4,11 @@ In this project, I made a bot to help clients have a quotation for a wine sale.
 
 ![screenshot](./src/imgs/ScreenshotStart.png)
 
-In this project, I make a Telegram wine quote bot using the API given by the BotFather from telegram. I choose a Hummingbird_Bot, because I have my handcrafted wine business, and I think this project could help in the future in how we can go to more people.
+In this project, I make a Telegram wine quote bot using the API given by the BotFather from telegram. I choose a Hummingbird_Bot, because I have my handcrafted wine business, and this project could help in the future in how we can go to more people.
 # Descrition
 With this bot: 
-you can move within options, using the assigned typings. 
-you can choose different flavors for  single bottles, boxes with 12 bottles of wine each one and/or take combos.
+you can move within options using the assigned typings. 
+you can choose between different flavors for single bottles, boxes (12 bottles), and take combos.
 ## Group Link
 
 > <a href=http://t.me/JuanDlaCruzbot>Group link</a>
@@ -27,7 +27,7 @@ you can choose different flavors for  single bottles, boxes with 12 bottles of w
 - Rubocop
   
 ## :wrench: Getting Started
-> Take a copy of this project locally
+> Take a copy of this project
 
 - Go to the main page of the repo.
 - Press the "Code" button and get the repo link.
@@ -42,7 +42,7 @@ git clone 'repo_link'
 ```
 bundle install
 ```
-- and for run
+- and for the run
 ```
 bundle exec ruby /bin/main.rb
 
@@ -52,7 +52,7 @@ bundle exec ruby bin/main.rb
 ```
 - now open your telegram and search to @JuanDlaCruzbot or use this <a href=http://t.me/JuanDlaCruzbot>Direct link</a>
 - With this bot: 
-- you can move within options, using the assigned typings. 
+- you can move within different options using the assigned typings. 
 ![screenshot](./src/imgs/ScreenshotStart.png)
 - if you choose single bottles 
 
@@ -83,13 +83,13 @@ bundle exec ruby bin/main.rb
 ```
 -  going back to the last menu.
 
-When you feel you don't want to buy anything, go to your car 
+When you feel you don't want to buy anything, go to your car:
 ```
 /car
 ``` 
 and see how much you expect to spend.
 ![screenshot](./src/imgs/ScreenshotExpend.png)
-Now you know how you will spend; you can keep going, have to choose an option 
+Now you know how you will spend;  if you want to keep going,  choose an option:
 ```
 /single, /box or /combo
 ```
@@ -100,7 +100,7 @@ Now you know how you will spend; you can keep going, have to choose an option
  ![screenshot](./src/imgs/ScreenshotStop.png)
 
 ## :mag_right: Test it
-> If you want to tast the unit code, type on terminal
+> If you want to test the unit code, type on terminal
  ```
  rspec
  ```
